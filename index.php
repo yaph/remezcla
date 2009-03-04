@@ -11,4 +11,6 @@
  */
 
 include('./inc/bootstrap.php');
-var_dump($_GET);
+$amazon = new Amazon($config['AMAZON']);
+$amazon->ItemSearch();
+//$amazon->get();

@@ -5,15 +5,15 @@
  * Copy default.config.php to config.php and run chmod 644 config.php
  */
 
-# choose the template to use located in the templates directory
-$TEMPLATE = 'default';
+###### Settings for display ######
+$CONFIG['TEMPLATE'] = 'default';
 
-# Set API keys fpr accessing Web Services
-$API_KEY_AMAZON = '';
-$API_KEY_CJ = '';
-$API_KEY_YOUTUBE = '';
+###### Settings for modules ######
 
-# Modules
-$MODULE_AMAZON = TRUE;
-$MODULE_CJ = FALSE;
-$MODULE_YOUTUBE = FALSE;
+# Amazon module required
+$CONFIG['AMAZON']['AWSAccessKeyId'] = '';
+$CONFIG['AMAZON']['SearchIndex'] = '';
+
+# Amazon module optional
+$CONFIG['AMAZON']['AssociateTag'] = '';
+$CONFIG['AMAZON']['Title'] = ''; # TODO not valid for all requests!!!

@@ -9,23 +9,78 @@ abstract class AbstractWebService {
   # force extending class to define these methods
   abstract protected function setRequestUri();
   abstract public function setCacheDuration();
-
+  
   /**
    * Fetch the content of the given URI
    *
    * @return String $response
    */
-  public function get() {
+  protected function get() {
     $request_uri = self::getRequestUri();
-    print $request_uri;
-  }
+    $cache_id = md5($request_uri);
     
+    $result = '';
+    if (false === ($result = self::getCache($cache_id))) {
+      if (false !== $result = self::request($request_uri)) {
+        # TODO exception handling
+        $success = self::cache($cache_id, $result);
+      } else {
+        # TODO exception handling
+        die("No results for request");
+      }
+      
+    }
+    return $result;
+  }
+
   /**
    * Get the URI to request
    *
    * @return String $request_uri
    */
-  public function getRequestUri() {
+  private function getRequestUri() {
     return $this->request_uri;
+  }
+  
+  /**
+   * Get the cache duration in seconds for the current object
+   *
+   * @return Integer $request_uri
+   */
+  private function getCacheDuration() {
+    return $this->cache_duration;
+  }
+
+  /**
+   * Return a cached version of the requested content or
+   * false if not cached
+   *
+   * @param String $cache_id
+   * @return String $cached OR FALSE
+   */
+  private function getCache($cache_id) {
+    $class_name = get_class($this);
+    return false;
+  }
+  
+  /**
+   * Request the given URI and return the response
+   *
+   * @param String $request_uri
+   * @return String $response OR FALSE
+   */
+  private function request($request_uri) {
+    var_dump($request_uri);
+    return TRUE;
+  }
+  
+  /**
+   * Cache the response of a request
+   *
+   * @param String $request_uri
+   * @return String $response
+   */
+  private function cache($cache_id, $response) {
+    var_dump(PATH_CACHE);
   }
 }
