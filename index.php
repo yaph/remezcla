@@ -11,4 +11,4 @@
  */
 
 include('./inc/bootstrap.php');
-print PATH_HTDOCS;
+var_dump($_GET);

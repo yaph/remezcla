@@ -1,0 +1,18 @@
+# Don't show directory listings.
+Options -Indexes
+
+# Handle any 404 errors.
+ErrorDocument 404 /index.php
+
+# Set the default handler.
+DirectoryIndex index.php
+
+# Rewrite rules.
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  # Rewrite URLs of the form 'x' to the form 'index.php?path=x'.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !=/favicon.ico
+  RewriteRule ^(.*)$ index.php?path=$1 [L,QSA]
+</IfModule>
