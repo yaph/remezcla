@@ -1,4 +1,3 @@
-// $Id$
 All remezcla code is Copyright 2009 by the original authors.
 
 This program is free software: you can redistribute it and/or modify

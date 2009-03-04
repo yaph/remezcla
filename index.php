@@ -1,6 +1,4 @@
 <?php
-// $Id$
-
 /**
  * @file
  * The PHP page that serves all page requests on a remezcla installation.
