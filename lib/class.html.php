@@ -88,7 +88,7 @@ class HTML {
    * @param String $content Optional content of the HTML element.
    * @return String html
    */
-  public static function element($name, array $attr = array(), $content = '') {
+  private static function element($name, array $attr = array(), $content = '') {
     $attr_string = self::getAttrString($attr);
     $html = '<' . $name . $attr_string;
     if (empty($content)) {
