@@ -51,18 +51,66 @@ class HTML {
   private static function checkString($string) {
     return filter_var($string, FILTER_SANITIZE_STRING);
   }
+
+  /**
+   * Generate a string of attribute value pairs.
+   *
+   * @param Array $attr Array of attributes.
+   * @return String html
+   */
+  private static function getAttrString(array $attr = array()) {
+    $attr_string = '';
+    if (!empty($attr)) {
+      foreach ($attr as $name => $value) {
+        $name = getPlainString($name);
+        switch ($name) {
+          case 'src':
+          case 'href':
+            $value = checkUri($value);
+            break;
+          default:
+            $value = checkString($value);
+            break;
+        }
+        if ($name && $value) {
+          $attr_string .= ' ' . $name . '="' . $value . '"';
+        }
+      }
+    }
+    return $attr_string;
+  }
   
   /**
-   * Generate listmarkup for the given list type. Does not
+   * Generic function to generate markup for HTML elements.
+   *
+   * @param String $name Name of the HTML element.
+   * @param Array @attr Array of attributes.
+   * @param String $content Optional content of the HTML element.
+   * @return String html
+   */
+  public static function element($name, array $attr = array(), $content = '') {
+    $attr_string = self::getAttrString($attr);
+    $html = '<' . $name . $attr_string;
+    if (empty($content)) {
+      $html .= ' />';
+    }
+    else {
+      $html .= '>' . $content . '</' . $name . '>';
+    }
+    return $html;
+  }
+
+  /**
+   * Generate list markup for the given list type. Does not
    * support definition lists (dl).
    *
    * @param String $list_type List type is one of 'ul' and 'ol'.
    * @param Array $items Array of list item texts.
-   * @param Array $attr array of attributes
+   * @param Array $attr Array of attributes.
    * @return String html
    */
   private static function html_list($list_type, array $items, array $attr) {
-    $attr_string = getAttrString($attr);
+    $attr_string = self::getAttrString($attr);
     $html = '<' . $list_type . '>' . $attr_string . '>';
     foreach ($items as $item) {
       $html .= '<li>' . $item . '</li>';
@@ -72,7 +120,7 @@ class HTML {
   }
 
   /**
-   * Generate a unordered list (ul).
+   * Generate an unordered list (ul).
    *
    * @param Array $items Array of list item texts.
    * @param Array $attr Array of attributes.
@@ -83,7 +131,7 @@ class HTML {
   }
   
   /**
-   * Generate a ordered list (ol).
+   * Generate an ordered list (ol).
    *
    * @param Array $items Array of list item texts.
    * @param Array $attr Array of attributes.
@@ -101,34 +149,6 @@ class HTML {
    * @return String html
    */
   public static function a($text, array $attr) {
-    $attr_string = getAttrString($attr);
-    return '<a' . $attr_string . '>' . $text . '</a>';
-  }
-
-  /**
-   * Generate a string of attribute value pairs.
-   *
-   * @param Array $attr Array of attributes.
-   * @return String html
-   */
-  private static function getAttrString(array $attr) {
-    $attr_string = '';
-    foreach ($attr as $name => $value) {
-      $name = getPlainString($name);
-
-      switch ($name) {
-        case 'src':
-        case 'href':
-          $value = checkUri($value);
-          break;
-        default:
-          $value = checkString($value);
-          break;
-      }
-      if ($name && $value) {
-        $attr_string .= ' ' . $name . '="' . $value . '"';
-      }
-    }
-    return $attr_string;
+    return self::element('a', $attr, $text);
   }
 }
