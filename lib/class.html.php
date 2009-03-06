@@ -36,6 +36,7 @@ class HTML {
         return false;
       }
       $string = filter_var($string, FILTER_SANITIZE_URL);
+      # TODO make internal relative URLs absolute
     }
     
     # Encode &<>"' for security reasons

@@ -4,6 +4,8 @@ define('PATH_HTDOCS', getcwd() . DIRECTORY_SEPARATOR);
 define('PATH_LIB', PATH_HTDOCS . 'lib' . DIRECTORY_SEPARATOR);
 define('PATH_CACHE', PATH_HTDOCS . 'cache' . DIRECTORY_SEPARATOR);
 
+# TODO set base URL constant for HTML links and a JS variable that can be used in Templates remezcla.baseUri
+
 # file constants
 define('FILE_CONFIG', PATH_HTDOCS . 'config' . DIRECTORY_SEPARATOR . 'config.php');
 
