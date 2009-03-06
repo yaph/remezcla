@@ -1,10 +1,11 @@
 <?php
 /**
- * A class for accessing Amazon Web Services
+ * A class for accessing Amazon Web Services.
  *
  * @author Ramiro Gomez <www@ramiro.org>
  */
 class Amazon extends AbstractWebService {
+  
   private $common_request_params;
   private $base_uri;
   protected $request_uri;
@@ -14,7 +15,7 @@ class Amazon extends AbstractWebService {
    * Constructor with initializations
    *
    * @param Array $common_request_params common request parameters
-   * @param String $locale locale identifier
+   * @param String $locale locale identifier.
    * @return Void
    */
   public function __construct(array $common_request_params, $locale = '') {
@@ -44,11 +45,7 @@ class Amazon extends AbstractWebService {
   }
   
   /**
-   * Set the URI to request
-   * TODO move to abstract parent class
-   *
-   * @param Array $request_params
-   * @return Void
+   * Implementation of setRequestUri.
    */
   protected function setRequestUri($request_params = array()) {
     $this->common_request_params += $request_params;
@@ -62,10 +59,7 @@ class Amazon extends AbstractWebService {
   }
   
   /**
-   * Set the cache duration in seconds
-   *
-   * @param Void
-   * @return Void
+   * Implementation of setCacheDuration.
    */
   public function setCacheDuration() {
     # set to one day as default
@@ -73,7 +67,7 @@ class Amazon extends AbstractWebService {
   }
   
   /**
-   * Amazon ItemSearch operation
+   * Amazon ItemSearch operation.
    *
    * @param Array $request_params
    * @return Void

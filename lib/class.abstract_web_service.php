@@ -1,17 +1,34 @@
 <?php
 /**
- * Abstract class for using Web Services
+ * Abstract class for using Web Services.
  *
  * @author Ramiro Gomez <www@ramiro.org>
  * @abstract
  */
 abstract class AbstractWebService {
-  # force extending class to define these methods
+  
+  /**
+   * Set the URI to request.
+   *
+   * TODO
+   * probably better to force setting base_uri and query param array
+   * and move setRequestUri functionality here.
+   *
+   * @param Array $request_params
+   * @return Void
+   */
   abstract protected function setRequestUri();
+  
+  /**
+   * Set the cache duration in seconds.
+   *
+   * @param Void
+   * @return Void
+   */
   abstract public function setCacheDuration();
   
   /**
-   * Fetch the content of the given URI
+   * Fetch the content of the given URI.
    *
    * @return String $response
    */
@@ -34,7 +51,7 @@ abstract class AbstractWebService {
   }
 
   /**
-   * Get the URI to request
+   * Get the URI to request.
    *
    * @return String $request_uri
    */
@@ -43,7 +60,7 @@ abstract class AbstractWebService {
   }
   
   /**
-   * Get the cache duration in seconds for the current object
+   * Get the cache duration in seconds for the current object.
    *
    * @return Integer $request_uri
    */
@@ -53,7 +70,7 @@ abstract class AbstractWebService {
 
   /**
    * Return a cached version of the requested content or
-   * false if not cached
+   * false if not cached.
    *
    * @param String $cache_id
    * @return String $cached OR FALSE
@@ -64,7 +81,7 @@ abstract class AbstractWebService {
   }
   
   /**
-   * Request the given URI and return the response
+   * Request the given URI and return the response.
    *
    * @param String $request_uri
    * @return String $response OR FALSE
@@ -75,7 +92,7 @@ abstract class AbstractWebService {
   }
   
   /**
-   * Cache the response of a request
+   * Cache the response of a request.
    *
    * @param String $request_uri
    * @return String $response

@@ -1,14 +1,18 @@
 <?php
 /**
- * Class with mostly  methods to generate HTML markup
- * and do sanitizing before display. HTML generating
- * methods are static.
+ * Class with methods to generate HTML markup and do sanitizing
+ * before display. HTML generating methods are static.
  *
  * @author Ramiro Gomez <www@ramiro.org>
- * @abstract
  */
 class HTML {
 
+  /**
+   * Validate and sanitize URIs.
+   *
+   * @param String $string
+   * @return String $string
+   */
   private static function checkUri($string) {
     # Extract scheme
     $arr_parts = parse_url($string);
@@ -19,10 +23,11 @@ class HTML {
 
     # Check if it is an email address
     if ('mailto' == $scheme) {
-      if (false === filter_var($string, FILTER_VALIDATE_EMAIL)) {
+      $email = $arr_parts['path'];
+      if (false === filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return false;
       }
-      $string = filter_var($string, FILTER_SANITIZE_EMAIL);
+      $string = 'mailto:' . filter_var($email, FILTER_SANITIZE_EMAIL);
     }
 
     # Check if it is a url
@@ -38,7 +43,7 @@ class HTML {
   }
 
   /**
-   * Remove <>? for security reasons
+   * Remove <>? for security reasons.
    *
    * @param String $string
    * @return String $string
@@ -49,10 +54,10 @@ class HTML {
   
   /**
    * Generate listmarkup for the given list type. Does not
-   * support definition lists (dl)
+   * support definition lists (dl).
    *
-   * @param String $list_type list type 'ul' or 'ol'
-   * @param String $text anchor text for link
+   * @param String $list_type List type is one of 'ul' and 'ol'.
+   * @param Array $items Array of list item texts.
    * @param Array $attr array of attributes
    * @return String html
    */
@@ -69,8 +74,8 @@ class HTML {
   /**
    * Generate a unordered list (ul).
    *
-   * @param String $text anchor text for link
-   * @param Array $attr array of attributes
+   * @param Array $items Array of list item texts.
+   * @param Array $attr Array of attributes.
    * @return String html
    */
   public static function ul(array $items, array $attr) {
@@ -80,8 +85,8 @@ class HTML {
   /**
    * Generate a ordered list (ol).
    *
-   * @param String $text anchor text for link
-   * @param Array $attr array of attributes
+   * @param Array $items Array of list item texts.
+   * @param Array $attr Array of attributes.
    * @return String html
    */
   public static function ol(array $items, array $attr) {
@@ -91,8 +96,8 @@ class HTML {
   /**
    * Generate an a tag.
    *
-   * @param String $text anchor text for link
-   * @param Array $attr array of attributes
+   * @param String $text Anchor text for link.
+   * @param Array $attr Array of attributes.
    * @return String html
    */
   public static function a($text, array $attr) {
@@ -103,7 +108,7 @@ class HTML {
   /**
    * Generate a string of attribute value pairs.
    *
-   * @param Array $attr array of attributes
+   * @param Array $attr Array of attributes.
    * @return String html
    */
   private static function getAttrString(array $attr) {

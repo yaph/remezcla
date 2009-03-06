@@ -1,4 +1,9 @@
 <?php
+/**
+ * Class with methods for product item and list retrieval and display.
+ *
+ * @author Ramiro Gomez <www@ramiro.org>
+ */
 class Product extends AbstractModule {
 
   /**
@@ -18,25 +23,34 @@ class Product extends AbstractModule {
     $this->amazon = $amazon;
   }
 
-  # TODO cache path arrays in Anstract class
-  public function pathMapper() {
+  /**
+   * Implementation of pathMap method.
+   */
+  public function pathMap() {
     return array(
       'product' => array(
         'callback' => 'item',
-      	'template' => 'templateItem'
+        'template' => 'templateItem'
       ),
       'manufacturer' => array(
-        'callback' => 'search',
-      	'template' => 'templateSearch'
+        'callback' => 'itemList',
+        'template' => 'templateItemList'
       )
     );
   }
 
-  public function search() {
+  /**
+   * Implementation of index method.
+   */
+  public function index() {
+
+  }
+  
+  public function itemList() {
 
   }
 
-  public function templateSearch() {
+  public function templateItemList() {
 
   }
 

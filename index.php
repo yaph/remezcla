@@ -13,4 +13,3 @@
 include('./inc/bootstrap.php');
 $amazon = new Amazon($config['AMAZON']);
 $amazon->ItemSearch();
-//$amazon->get();
