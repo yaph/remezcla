@@ -62,14 +62,14 @@ class HTML {
     $attr_string = '';
     if (!empty($attr)) {
       foreach ($attr as $name => $value) {
-        $name = getPlainString($name);
+        $name = self::checkString($name);
         switch ($name) {
           case 'src':
           case 'href':
-            $value = checkUri($value);
+            $value = self::checkUri($value);
             break;
           default:
-            $value = checkString($value);
+            $value = self::checkString($value);
             break;
         }
         if ($name && $value) {
