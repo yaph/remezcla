@@ -2,7 +2,7 @@
 /**
  * Abstract module class.
  *
- * @author Ramiro Gomez <www@ramiro.org>
+ * @author Ramiro Gómez <www@ramiro.org>
  * @abstract
  */
 abstract class AbstractModule {

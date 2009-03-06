@@ -2,7 +2,7 @@
 /**
  * Class with methods for product item and list retrieval and display.
  *
- * @author Ramiro Gomez <www@ramiro.org>
+ * @author Ramiro Gómez <www@ramiro.org>
  */
 class Product extends AbstractModule {
 

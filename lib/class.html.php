@@ -3,7 +3,7 @@
  * Class with methods to generate HTML markup and do sanitizing
  * before display. HTML generating methods are static.
  *
- * @author Ramiro Gomez <www@ramiro.org>
+ * @author Ramiro Gómez <www@ramiro.org>
  */
 class HTML {
 

@@ -2,7 +2,7 @@
 /**
  * A class for accessing Amazon Web Services.
  *
- * @author Ramiro Gomez <www@ramiro.org>
+ * @author Ramiro Gómez <www@ramiro.org>
  */
 class Amazon extends AbstractWebService {
   
