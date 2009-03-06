@@ -17,23 +17,23 @@ class HTML {
     # Extract scheme
     $arr_parts = parse_url($string);
     if (!isset($arr_parts['scheme'])) {
-      return false;
+      return FALSE;
     }
     $scheme = $arr_parts['scheme'];
 
     # Check if it is an email address
     if ('mailto' == $scheme) {
       $email = $arr_parts['path'];
-      if (false === filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        return false;
+      if (FALSE === filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return FALSE;
       }
       $string = 'mailto:' . filter_var($email, FILTER_SANITIZE_EMAIL);
     }
 
     # Check if it is a url
     else {
-      if (false === filter_var($string, FILTER_VALIDATE_URL)) {
-        return false;
+      if (FALSE === filter_var($string, FILTER_VALIDATE_URL)) {
+        return FALSE;
       }
       $string = filter_var($string, FILTER_SANITIZE_URL);
       # TODO make internal relative URLs absolute

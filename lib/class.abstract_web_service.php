@@ -37,8 +37,8 @@ abstract class AbstractWebService {
     $cache_id = md5($request_uri);
     
     $result = '';
-    if (false === ($result = self::getCache($cache_id))) {
-      if (false !== $result = self::request($request_uri)) {
+    if (FALSE === ($result = self::getCache($cache_id))) {
+      if (FALSE !== $result = self::request($request_uri)) {
         # TODO exception handling
         $success = self::cache($cache_id, $result);
       } else {
@@ -70,14 +70,14 @@ abstract class AbstractWebService {
 
   /**
    * Return a cached version of the requested content or
-   * false if not cached.
+   * FALSE if not cached.
    *
    * @param String $cache_id
    * @return String $cached OR FALSE
    */
   private function getCache($cache_id) {
     $class_name = get_class($this);
-    return false;
+    return FALSE;
   }
   
   /**

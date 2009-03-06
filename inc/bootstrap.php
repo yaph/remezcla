@@ -31,6 +31,7 @@ if (!isset($defined_vars['CONFIG'])) {
 $config = $defined_vars['CONFIG'];
 
 # include required classes
+# TODO check for enabeld modules
 $classes = array(
   'abstract_module',
   'abstract_web_service',
