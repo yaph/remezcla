@@ -7,5 +7,5 @@
  */
 abstract class AbstractModule {
   # force extending class to define these methods
-  abstract protected function pathCallback();
+  abstract protected function pathMapper();
 }
