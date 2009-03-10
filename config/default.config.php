@@ -16,4 +16,3 @@ $CONFIG['AMAZON']['SearchIndex'] = '';
 
 # Amazon module optional
 $CONFIG['AMAZON']['AssociateTag'] = '';
-$CONFIG['AMAZON']['Title'] = ''; # TODO not valid for all requests!!!

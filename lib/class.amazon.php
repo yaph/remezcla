@@ -49,13 +49,40 @@ class Amazon extends AbstractWebService {
    */
   protected function setRequestUri($request_params = array()) {
     $this->common_request_params += $request_params;
-    
-    $params = array();
-    foreach ($this->common_request_params as $k => $v) {
-      $params[] = "$k=$v";
+    $this->request_uri = $this->base_uri . '?' . http_build_query($this->common_request_params);
+  }
+  
+  /**
+   * Implementation of getItems.
+   */
+  protected function getItems($data) {
+    $xml = simplexml_load_string($data);
+    $items = array();
+    $items['meta']['count'] = intval($xml->Items->TotalResults);
+    if (!$items['meta']['count']) {
+      return false;
     }
-    $query = implode('&', $params);
-    $this->request_uri = $this->base_uri . '?' . $query;
+    $items['meta']['pages'] = intval($xml->Items->TotalPages);
+    foreach ($xml->Items->Item as $item) {
+      $item_data = array(
+        'id' => (string)$item->ASIN,
+        'url' => (string)$item->DetailPageURL
+      );
+      $item_data += $this->getAttributes($item->ItemAttributes);
+      $items['items'][] = $item_data;
+    }
+    return $items;
+  }
+  
+  /**
+   * @param SimpleXMLElement $attr
+   * @return Array $attributes
+   */
+  private function getAttributes($attr) {
+    $attributes = array();
+    $attributes['manufacturer'] = (string)$attr->Manufacturer;
+    $attributes['title'] = (string)$attr->Title;
+    return $attributes;
   }
   
   /**
@@ -73,8 +100,9 @@ class Amazon extends AbstractWebService {
    * @return Void
    */
   public function ItemSearch($request_params = array()) {
-    $request_params['Operation'] = __function__;
+    $request_params['Operation'] = 'ItemSearch';
     $this->setRequestUri($request_params);
-    $this->get();
+    $items = $this->getItems($this->get());
+    return $items;
   }
 }

@@ -20,6 +20,14 @@ abstract class AbstractWebService {
   abstract protected function setRequestUri();
   
   /**
+   * Get a list of ItemsSet the cache duration in seconds.
+   *
+   * @param Object or Array $data Can be a SimpleXMLElement or another object
+   * @return Array
+   */
+  abstract protected function getItems($data);
+  
+  /**
    * Set the cache duration in seconds.
    *
    * @param Void
@@ -87,8 +95,11 @@ abstract class AbstractWebService {
    * @return String $response OR FALSE
    */
   private function request($request_uri) {
-    var_dump($request_uri);
-    return TRUE;
+    $ch = curl_init($request_uri);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    return $response;
   }
   
   /**
@@ -98,6 +109,7 @@ abstract class AbstractWebService {
    * @return String $response
    */
   private function cache($cache_id, $response) {
-    var_dump(PATH_CACHE);
+    #var_dump(PATH_CACHE);
+    return FALSE;
   }
 }
