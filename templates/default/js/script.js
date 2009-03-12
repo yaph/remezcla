@@ -1,6 +1,6 @@
 $(function(){
   var a = $('#self-req');
-  var sc = $('#site-content');
+  var sc = $('#content');
   a.click(function(){
     sc.html('Loading...');
     $.get(
