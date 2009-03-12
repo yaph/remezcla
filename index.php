@@ -38,7 +38,7 @@ if (isset($_GET['js'])) {
 }
 else {
   header('Content-type: text/html');
-  $site['CONTENT'] = $html;
+  $site['content'] = $html;
   
   // load the template
   require $path_template . 'layout.tpl.php';

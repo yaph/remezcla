@@ -14,6 +14,7 @@ if (isset($_GET['path'])) {
 define('PATH_HTDOCS', getcwd() . DIRECTORY_SEPARATOR);
 define('PATH_LIB', PATH_HTDOCS . 'lib' . DIRECTORY_SEPARATOR);
 define('PATH_CACHE', PATH_HTDOCS . 'cache' . DIRECTORY_SEPARATOR);
+define('PATH_MODULES', PATH_HTDOCS . 'modules' . DIRECTORY_SEPARATOR);
 define('PATH_TEMPLATES', PATH_HTDOCS . 'templates' . DIRECTORY_SEPARATOR);
 define('PATH_WWW', $_SERVER['REQUEST_URI']);
 
@@ -32,8 +33,8 @@ if (!isset($defined_vars['CONFIG'])) {
 }
 $config = $defined_vars['CONFIG'];
 
-# include required classes
-# TODO check for enabeld modules
+# include required library classes
+# TODO set requirements in modules
 $classes = array(
   'abstract_module',
   'abstract_web_service',

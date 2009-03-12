@@ -16,7 +16,7 @@ class Product extends AbstractModule {
   /**
    * Constructor of product class
    *
-   * @param Object $amazon
+   * @param Amazon $amazon
    * @return Void
    */
   public function __construct($amazon) {

@@ -44,4 +44,8 @@ abstract class AbstractModule {
     }
     return $path_map;
   }
+  
+  public function setPageTitle($string) {
+    $site['TITLE'] = HTML::checkString($string);
+  }
 }

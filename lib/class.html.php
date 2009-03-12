@@ -44,16 +44,6 @@ class HTML {
   }
 
   /**
-   * Remove <>? for security reasons.
-   *
-   * @param String $string
-   * @return String $string
-   */
-  private static function checkString($string) {
-    return filter_var($string, FILTER_SANITIZE_STRING);
-  }
-
-  /**
    * Generate a string of attribute value pairs.
    *
    * @param Array $attr Array of attributes.
@@ -118,6 +108,16 @@ class HTML {
     }
     $html .= '</' . $list_type . '>';
     return $html;
+  }
+  
+  /**
+   * Remove <>? for security reasons.
+   *
+   * @param String $string
+   * @return String $string
+   */
+  public static function checkString($string) {
+    return filter_var($string, FILTER_SANITIZE_STRING);
   }
 
   /**
