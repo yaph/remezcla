@@ -14,6 +14,8 @@ if (isset($_GET['path'])) {
 define('PATH_HTDOCS', getcwd() . DIRECTORY_SEPARATOR);
 define('PATH_LIB', PATH_HTDOCS . 'lib' . DIRECTORY_SEPARATOR);
 define('PATH_CACHE', PATH_HTDOCS . 'cache' . DIRECTORY_SEPARATOR);
+define('PATH_TEMPLATES', PATH_HTDOCS . 'templates' . DIRECTORY_SEPARATOR);
+define('PATH_WWW', $_SERVER['REQUEST_URI']);
 
 # TODO set base URL constant for HTML links and a JS variable that can be used in Templates remezcla.baseUri
 
@@ -40,3 +42,13 @@ $classes = array(
 foreach ($classes as $class) {
   include PATH_LIB . 'class.' . $class . '.php';
 }
+
+# assign tenplate path
+$path_template =  PATH_TEMPLATES . $config['TEMPLATE'] . DIRECTORY_SEPARATOR;
+
+# assign site variables
+$site = $config['SITE'];
+$site['PATH_WWW'] =  PATH_WWW;
+$site['PATH_TEMPLATE'] =  PATH_WWW . 'templates/' . $config['TEMPLATE'];
+$site['PATH_JS'] = $site['PATH_TEMPLATE'] . '/js/' ;
+$site['PATH_CSS'] = $site['PATH_TEMPLATE'] . '/css/' ;

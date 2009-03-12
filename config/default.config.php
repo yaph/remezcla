@@ -6,7 +6,11 @@
  */
 
 ###### Settings for display ######
-$CONFIG['TEMPLATE'] = 'default';
+$CONFIG['TEMPLATE'] = 'default'; # the template to use
+
+###### Default settings for the site ######
+$CONFIG['SITE']['TITLE'] = 'Default title of the site';
+$CONFIG['SITE']['MISSION'] = 'Default mission of the site';
 
 ###### Settings for modules ######
 
