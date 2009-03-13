@@ -15,6 +15,12 @@ $CONFIG['SITE']['mission'] = 'Default mission of the site';
 ###### Settings for modules ######
 $CONFIG['MODULES']['product'] = TRUE;
 
+###### Map paths to moules ######
+#Todo modules need to implement a function for the path 
+$CONFIG['PATH']['product'] = 'product';
+$CONFIG['PATH']['manufacturer'] = 'product';
+$CONFIG['PATH']['video'] = 'video';
+
 # Amazon module required
 $CONFIG['AMAZON']['AWSAccessKeyId'] = '';
 $CONFIG['AMAZON']['SearchIndex'] = '';

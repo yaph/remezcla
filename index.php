@@ -12,13 +12,18 @@
 #Hewlett-Packard, Asus, Acer, MSI, Dell
 
 include('./inc/bootstrap.php');
-$amazon = new Amazon($config['AMAZON']);
-$params = array(
-  'Keywords' => 'Linux',
-  'Sort' => 'salesrank',
-  'Manufacturer' => 'Asus',
-);
-$items = $amazon->ItemSearch($params);
+# include enabled modules and populate path map
+$site['boxes'] = array();
+foreach ($config['MODULES'] as $module => $status) {
+  if ($status) {
+    include PATH_MODULES . $module . DIRECTORY_SEPARATOR . 'class.' . $module . '.php';
+    $class_name = ucfirst($module);
+    # TODO passing the complete config array here sucks
+    $object = new $class_name($config);
+    $site['boxes'][] = $object->itemList();
+  }
+}
+
 $html = '';
 if ($items) {
   $html .= '<ul>';
