@@ -13,6 +13,7 @@
 
 include('./inc/bootstrap.php');
 # include enabled modules and populate path map
+# TODO remove MODULE enabling from config and automatically include modules with a modulename.ini file
 $site['boxes'] = array();
 foreach ($config['MODULES'] as $module => $status) {
   if ($status) {
