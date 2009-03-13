@@ -7,6 +7,11 @@ ErrorDocument 404 /index.php
 # Set the default handler.
 DirectoryIndex index.php
 
+# don't show content of .htaccess and +.ini files
+<FilesMatch "\.(htaccess|ini)$">
+  Order allow,deny
+</FilesMatch> 
+
 # Rewrite rules.
 <IfModule mod_rewrite.c>
   RewriteEngine on
